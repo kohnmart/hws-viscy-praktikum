@@ -84,7 +84,7 @@ architecture TESTBENCH of PC_TB is
 		--load = 1
 		pc_in <= "1111111111111111"; load <= '1';
 		run_cycle;
-		assert pc_out = "0000000000000000" report "Test 6 - Erhöhen fehlgeschlagen mit load = 1";
+		assert pc_out = pc_in report "Test 6 - Erhöhen fehlgeschlagen mit load = 1";
 		
 		--Funktioniert das Halten von Werten?
 		pc_in <= "1111111111111111"; load <= '1'; inc <= '0';
@@ -105,7 +105,7 @@ architecture TESTBENCH of PC_TB is
 		--reset = 0
 		pc_in <= "1111111111111111"; load <='1'; reset <= '0';
 		run_cycle;
-		assert pc_out = "111111111111111" report "Test 9 - Reset durchgeführt, obwohl nicht gewollt";
+		assert pc_out = "1111111111111111" report "Test 9 - Reset durchgefuehrt, obwohl nicht gewollt";
 		
 		-- Print a note & finish simulation now
 		assert false report "Simulation finished" severity note;
