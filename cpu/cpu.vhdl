@@ -84,7 +84,7 @@ architecture RTL of CPU is
     -- Controller ??
 
 
-    -- Konfiguration
+    -- configuration of entities
     for all: ALU use entity WORK.ALU(RTL);
     for all: CONTROLLER use entity WORK.CONTROLLER(RTL);
     for all: IR use entity WORK.IR(RTL);
@@ -93,7 +93,7 @@ architecture RTL of CPU is
 
     begin 
 
-        -- Port Mapping
+        ----- PORT MAPPING -----
 
         -- ALU
         CPU_ALU: ALU port map (
@@ -135,9 +135,11 @@ architecture RTL of CPU is
             ir_in => mem_data_in,
             ir_out => ir_out
         );
+    
 
+    -------- DATA ROUTING --------
 
-    -- Multiplexer Adress
+    -- Multiplexer ADRESS
     -- Selects from:
         -- PC
         -- REGFILE based on control signal
@@ -153,7 +155,7 @@ architecture RTL of CPU is
         end process;
         
 
-        
+
     -- Multiplexer REGFILE
     -- Selects from:
         -- value from instruction_register
