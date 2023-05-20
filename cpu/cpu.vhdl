@@ -2,17 +2,15 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-
-entity CPU is 
-port (
-    -- clk/reset 
-    -- adress
-    -- data
-    -- read/write
-    -- ready
-);
+entity CPU is
+    port (
+        clk, reset: in std_logic;                   -- clock and reset
+        adr: out std_logic_vector (15 downto 0);    -- adressbus
+        data: inout std_logic_vector (15 downto 0); -- databus
+        rd, wr: out std_logic;                      -- read/write operations
+        ready: in std_logic                         -- callback read/write
+    );
 end CPU;
-
 
 architecture RTL of CPU is
 
@@ -31,7 +29,12 @@ architecture RTL of CPU is
     signal regfile_out0_data, regfile_out1_data, regfile_in_data: STD_LOGIC_VECTOR (15 downto 0);
    
     -- Controller 
-    -- ??
+    signal c_pc_load, c_pc_inc: std_logic;
+    signal c_ir_load: std_logic;
+    signal c_regfile_load_lo, c_regfile_load_hi: std_logic;
+    signal c_reg_ldmem ,c_reg_ldi: std_logic;
+    signal c_adr_pc_not_reg: std_logic;
+    signal c_mem_rd, c_mem_wr: std_logic;
    
     -- Memory
     signal mem_data_in, mem_data_out: std_logic_vector (15 downto 0);
@@ -43,7 +46,7 @@ architecture RTL of CPU is
             b: in std_logic_vector(15 downto 0);
             sel: in std_logic_vector(2 downto 0);
             y: out std_logic_vector(15 downto 0);
-            zero: out std_logic;
+            zero: out std_logic
         );
     end component;
     
@@ -53,7 +56,7 @@ architecture RTL of CPU is
         clk: in std_logic;
         reset, inc, load: in std_logic;
         pc_in: in std_logic_vector(15 downto 0);
-        pc_out: in std_logic_vector(15 downto 0);
+        pc_out: in std_logic_vector(15 downto 0)
     );
     end component;
 
@@ -63,7 +66,7 @@ architecture RTL of CPU is
         clk: in std_logic;
         load: in std_logic;
         ir_in: in std_logic_vector(15 downto 0);
-        ir_out: out std_logic_vector(15 downto 0);
+        ir_out: out std_logic_vector(15 downto 0)
     );
     end component;
 
@@ -86,7 +89,7 @@ architecture RTL of CPU is
 
     -- configuration of entities
     for all: ALU use entity WORK.ALU(RTL);
-    for all: CONTROLLER use entity WORK.CONTROLLER(RTL);
+    --- for all: CONTROLLER use entity WORK.CONTROLLER(RTL); awaiting controller 
     for all: IR use entity WORK.IR(RTL);
     for all: PC use entity WORK.PC(RTL);
     for all: REGFILE use entity WORK.REGFILE(RTL);
@@ -145,9 +148,9 @@ architecture RTL of CPU is
         -- REGFILE based on control signal
     -- Assigns to:
         -- adr-signal
-     process (pc, regfile_out0_data, c_adr_pc_not_reg)
+     process (pc_out, regfile_out0_data, c_adr_pc_not_reg)
         begin
-            if c_adr_pc_not_reg = '1' then adr <= pc; 
+            if c_adr_pc_not_reg = '1' then adr <= pc_out; 
             -- changes in PC => output_value => subsequent adr for cpu ops
             else adr <= regfile_out0_data;
              -- changes in REGFILE => output_value => subsequent adr for cpu ops
