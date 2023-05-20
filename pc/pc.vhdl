@@ -5,10 +5,10 @@ use IEEE.numeric_std.all;
 -- Define Program Counter entity 
 entity PC is 
     port(
-        clk : in std_logic;                         -- clock input
-        reset, inc, load : in std_logic;            -- input
-        pc_in : in std_logic_vector(15 downto 0);   -- 16-bit input 
-        pc_out : out std_logic_vector(15 downto 0)  -- 16-bit output
+        clk : in std_logic;                         -- input clock_rate
+        reset, inc, load : in std_logic;            -- input controll signals
+        pc_in : in std_logic_vector(15 downto 0);   -- 16-bit input data
+        pc_out : out std_logic_vector(15 downto 0)  -- 16-bit output counter
         );
 end PC;
 
@@ -26,7 +26,8 @@ architecture RTL of PC is
                         count <= count + 1;         -- incremenct count-signal
                         end if;
                     if(load = '1') then             -- check => load-signal active?
-                        count <= unsigned(pc_in);   -- assign converted pc_in to count
+                        count <= unsigned(pc_in);   -- assign converted pc_in to count 
+                                                    -- jump to new 16-bit-address and load
                     end if;
                 end if;
             end if;
