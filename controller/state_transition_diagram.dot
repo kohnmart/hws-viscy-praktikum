@@ -1,0 +1,24 @@
+digraph StateTransitionDiagram {
+    rankdir=LR;  // Set the direction from left to right (LR)
+
+    // Define the states
+    reset [shape=doublecircle, label="RESET"];
+    if1 [shape=circle, label="IF1"];
+    if2 [shape=circle, label="IF1"];
+    id [shape=circle, label="ID"];
+    alu [shape=circle, label="ALU"];
+    ldil [shape=circle, label="LDIL"];
+    ldih [shape=circle, label="LDIH"];
+    halt [shape=circle, label="HALT"];
+
+    // Define the transitions
+    reset -> if1 [label=""];
+    if1 -> if1 [label="ready=1"];
+    if1 -> if2 [label="ready=0"];
+    if2 -> if2 [label="ready=0"];
+    if2 -> id [label="ready=1"];
+    id  -> alu [label="IR(15:14)='00'"];
+    id  -> ldil [label="IR(15:11)='01-00'"];
+    id  -> ldih [label="IR(15:11)='01-01'"];
+    id  -> halt [label="IR(15:11)='10-01'"];
+}
