@@ -1,0 +1,16 @@
+v 4
+file . "./pc/pc.vhdl" "4ec9e642d8c1a4d8c9e44e81cd47d06543925805" "20230524132018.646":
+  entity pc at 1( 0) + 0 on 17;
+  architecture rtl of pc at 15( 462) + 0 on 18;
+file . "./ir/viscy_ir.vhdl" "1c73e9c94fe12bf1413ef591e16536a38b90edf1" "20230524131907.083":
+  entity ir at 1( 0) + 0 on 13;
+  architecture rtl of ir at 14( 303) + 0 on 14;
+file . "./alu/alu.vhdl" "25c67ecfb67c3d831cb15e1210ffb48d850d293a" "20230522082519.187":
+  entity alu at 1( 0) + 0 on 11;
+  architecture rtl of alu at 17( 537) + 0 on 12;
+file . "./rf/viscy_rf.vhdl" "3cf4bc6e0068c6acb790e2a283c22f0e59d376ac" "20230524131923.092":
+  entity regfile at 1( 0) + 0 on 15;
+  architecture rtl of regfile at 18( 602) + 0 on 16;
+file . "./cpu/cpu.vhdl" "d2206b3a3c2992d82144c61e6489df3c823144c2" "20230524132111.341":
+  entity cpu at 1( 0) + 0 on 21;
+  architecture rtl of cpu at 15( 477) + 0 on 22;
