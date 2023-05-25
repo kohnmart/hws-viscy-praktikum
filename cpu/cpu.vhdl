@@ -7,7 +7,7 @@ entity CPU is
         clk, reset: in std_logic;                   -- clock and reset
         adr: out std_logic_vector (15 downto 0);    -- adressbus
         rdata: in std_logic_vector (15 downto 0);   -- read-databus
-        wdata: in std_logic_vector (15 downto 0);   -- write-databus
+        wdata: out std_logic_vector (15 downto 0);   -- write-databus
         rd, wr: out std_logic;                      -- read/write operations
         ready: in std_logic                         -- callback read/write
     );
@@ -85,9 +85,21 @@ architecture RTL of CPU is
     );    
     end component;
 
-    -- Controller ??
-
-
+    -- Controller
+    component CONTROLLER is 
+    port(
+        clk, reset: in std_logic;
+        ir: in std_logic_vector(15 downto 0);   -- operation
+        ready, zero: in std_logic;              -- status signals
+        c_reg_ldmem, c_reg_ldi,                 -- Auswahl beim Register-Laden
+        c_regfile_load_lo, c_regfile_load_hi,    -- Controllsignals Regfile
+        c_pc_load, c_pc_inc,                    -- Controllinput PC
+        c_ir_load,                               -- Controllinput IR
+        c_mem_rd, c_mem_wr,                      -- Storesignals 
+        c_adr_pc_not_reg : out std_logic        -- Select adr source
+       );
+    end component; 
+        
     -- configuration of entities
     for all: ALU use entity WORK.ALU(RTL);
     --- for all: CONTROLLER use entity WORK.CONTROLLER(RTL); --- awaiting controller 
@@ -140,7 +152,6 @@ architecture RTL of CPU is
             ir_out => ir_out
         );
     
-
     -------- DATA ROUTING --------
 
     -- Multiplexer ADRESS
@@ -193,20 +204,21 @@ architecture RTL of CPU is
     process (mem_data_out, c_mem_wr) 
     begin
         if c_mem_wr = '1' then -- indicating write op
-            data <= mem_data_out; -- mem_data_out value -> data_signal 
+            wdata <= mem_data_out; -- mem_data_out value -> data_signal 
             -- data coming from memory will be assigned to data_signal
             -- connected to the input of the memory unit
             
-            else -- indicating read
-            data <= "ZZZZZZZZZZZZZZZZ";  -- invalid/dont care - statement (read-cycle)
+        else -- indicating read
+            wdata <= "ZZZZZZZZZZZZZZZZ";  -- invalid/dont care - statement (read-cycle)
         end if;
     end process;
 
 
 
     -- DATA FLOW --> Memory Operations
-    mem_data_in <= data; -- write to memory data input
+    mem_data_in <= rdata; -- write to memory data input
     rd <= c_mem_rd; --  c_mem_rd value controls read operations of the memory
     wr <= c_mem_wr; -- c_mem_wr value controls write operations of the memory
+    --- wdata <= regfile_out1_data; --wdata 
 
     end RTL;
