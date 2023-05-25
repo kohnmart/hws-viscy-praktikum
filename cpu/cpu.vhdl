@@ -6,7 +6,8 @@ entity CPU is
     port (
         clk, reset: in std_logic;                   -- clock and reset
         adr: out std_logic_vector (15 downto 0);    -- adressbus
-        data: inout std_logic_vector (15 downto 0); -- databus
+        rdata: in std_logic_vector (15 downto 0);   -- read-databus
+        wdata: in std_logic_vector (15 downto 0);   -- write-databus
         rd, wr: out std_logic;                      -- read/write operations
         ready: in std_logic                         -- callback read/write
     );
@@ -89,7 +90,7 @@ architecture RTL of CPU is
 
     -- configuration of entities
     for all: ALU use entity WORK.ALU(RTL);
-    --- for all: CONTROLLER use entity WORK.CONTROLLER(RTL); awaiting controller 
+    --- for all: CONTROLLER use entity WORK.CONTROLLER(RTL); --- awaiting controller 
     for all: IR use entity WORK.IR(RTL);
     for all: PC use entity WORK.PC(RTL);
     for all: REGFILE use entity WORK.REGFILE(RTL);
