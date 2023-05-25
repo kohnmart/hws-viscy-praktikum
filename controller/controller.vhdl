@@ -20,7 +20,7 @@ end CONTROLLER;
 architecture RTL of CONTROLLER is
 	-- Aufzählungstyp für den Zustand...
 	type t_state is ( s_reset, s_if1, s_if2, s_id, s_alu, s_ldil, 
-		s_ldih, s_halt);
+		s_ldih, s_halt, s_error);
 	signal state, next_state: t_state;
 begin
 
@@ -49,6 +49,9 @@ begin
 		c_mem_wr <= '0';
 		c_adr_pc_not_reg <= '-'; 	-- Don't Care
 		
+		-- prevent latch, error if no next state is assigned
+		next_state <= s_error;
+		
 		-- Zustandsabhängige Belegung ...
 		-- Hier steht die eigentliche Automaten-Logik.
 		-- Es müssen nur Abweichungen von der Default-Belegung behandelt werden.
@@ -56,11 +59,19 @@ begin
 			when s_reset =>
 				next_state <= s_if1;
 			when s_if1 =>
-				if ready = '0' then next_state <= s_if2; end if;
+				if ready = '0' then 
+					next_state <= s_if2;
+				else
+					next_state <= s_if1;
+				end if;
 			when s_if2 =>
 				-- Zustandsänderungen dürfen mit Bedingungen verknüpft sein,
 				-- Zuweisungen an Steuersignale nicht!
-				if ready = '1' then next_state <= s_id; end if;
+				if ready = '1' then 
+					next_state <= s_id;
+				else
+					next_state <= s_if2;
+				end if;
 				c_adr_pc_not_reg <= '1';
 				c_mem_rd <= '1';
 				c_ir_load <= '1';
@@ -93,7 +104,8 @@ begin
 				next_state <= s_if1;
 				c_regfile_load_hi <= '1';
 				c_reg_ldi <= '1';
-			when s_halt => null;
+			when s_error => next_state <= s_error;
+			when s_halt => next_state <= s_halt;
 			when others => null;
 		end case;
 	end process;
