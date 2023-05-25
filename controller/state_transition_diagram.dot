@@ -11,6 +11,7 @@ digraph StateTransitionDiagram {
     ldih [shape=circle, label="LDIH\nc_regfile_load_hi <= '1';\nc_reg_ldi <= '1';"];
     halt [shape=circle, label="HALT"];
     null [label="", shape=none, height=.0, width=.0];
+    error [shape=circle, label="ERROR"];
 
     // Define the transitions
     reset -> if1 [label=""];
@@ -22,8 +23,11 @@ digraph StateTransitionDiagram {
     id  -> ldil [label="IR(15:11)='01-00'"];
     id  -> ldih [label="IR(15:11)='01-01'"];
     id  -> halt [label="IR(15:11)='10-01'"];
+    id 	-> error [label="ELSE"];
 	alu -> if1;
     ldil -> if1;
     ldih -> if1;
     null -> reset [label="reset=1"];
+    halt -> halt [label="reset=0"];
+    error -> error [label="reset=0"];
 }
