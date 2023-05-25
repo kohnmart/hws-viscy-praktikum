@@ -194,27 +194,6 @@ architecture RTL of CPU is
     end process;
 
 
-
-    -- Multiplexer MEMORY
-    -- Select: 
-        -- data coming from memory (write) 
-        -- invalid (read)
-    -- Assigns to:
-        -- data (input of memory)
-    process (mem_data_out, c_mem_wr) 
-    begin
-        if c_mem_wr = '1' then -- indicating write op
-            wdata <= mem_data_out; -- mem_data_out value -> data_signal 
-            -- data coming from memory will be assigned to data_signal
-            -- connected to the input of the memory unit
-            
-        else -- indicating read
-            wdata <= "ZZZZZZZZZZZZZZZZ";  -- invalid/dont care - statement (read-cycle)
-        end if;
-    end process;
-
-
-
     -- DATA FLOW --> Memory Operations
     mem_data_in <= rdata; -- write to memory data input
     rd <= c_mem_rd; --  c_mem_rd value controls read operations of the memory
