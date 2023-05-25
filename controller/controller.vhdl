@@ -18,7 +18,7 @@ end CONTROLLER;
 
 architecture RTL of CONTROLLER is
     -- Aufzählungstyp für den Zustand...
-    type t_state is ( s_reset, s_if1, s_if2, s_id, s_alu);
+    type t_state is ( s_reset, s_if1, s_if2, s_id, s_alu, s_ldil, s_ldih);
     signal state, next_state: t_state;
 begin 
     -- Zustandsregister (taktsynchroner Prozess) ...
@@ -61,6 +61,11 @@ begin
             c_ir_load <= '1';
 
             when s_id =>
+                c_pc_inc <= '1';
+            
+            when s_alu =>
+            when s_ldil =>
+            when s_ldih =>
                 c_pc_inc <= '1';
 
             when others => null;
