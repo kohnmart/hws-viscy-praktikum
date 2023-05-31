@@ -102,10 +102,11 @@ architecture RTL of CPU is
         
     -- configuration of entities
     for all: ALU use entity WORK.ALU(RTL);
-    --- for all: CONTROLLER use entity WORK.CONTROLLER(RTL); --- awaiting controller 
     for all: IR use entity WORK.IR(RTL);
     for all: PC use entity WORK.PC(RTL);
     for all: REGFILE use entity WORK.REGFILE(RTL);
+    for all: CONTROLLER use entity WORK.CONTROLLER(RTL); --- awaiting controller 
+
 
     begin 
 
@@ -151,6 +152,19 @@ architecture RTL of CPU is
             ir_in => mem_data_in,
             ir_out => ir_out
         );
+        
+        -- CONTROLLER
+        CPU CONTROLLER: CONTROLLER port map (
+		clk, reset: in std_logic;
+		ir: in std_logic_vector(15 downto 0); 	-- Befehlswort / Opcode
+		ready, zero: in std_logic; 				-- weitere Statussignale
+		c_reg_ldmem, c_reg_ldi, 				-- Auswahl beim Register-Laden
+		c_regfile_load_lo, c_regfile_load_hi, 	-- Steuersignale Reg.-File
+		c_pc_load, c_pc_inc, 					-- Steuereingaenge PC
+		c_ir_load, 								-- Steuereingang IR
+		c_mem_rd, c_mem_wr, 					-- Signale zum Speicher
+		c_adr_pc_not_reg : out std_logic 		-- Auswahl Adress-Quelle
+        )
     
     -------- DATA ROUTING --------
 
@@ -192,6 +206,27 @@ architecture RTL of CPU is
             regfile_in_data <= alu_y;
         end if;
     end process;
+
+
+
+    -- Multiplexer MEMORY
+    -- Select: 
+        -- data coming from memory (write) 
+        -- invalid (read)
+    -- Assigns to:
+        -- data (input of memory)
+    process (mem_data_out, c_mem_wr) 
+    begin
+        if c_mem_wr = '1' then -- indicating write op
+            wdata <= mem_data_out; -- mem_data_out value -> data_signal 
+            -- data coming from memory will be assigned to data_signal
+            -- connected to the input of the memory unit
+            
+        else -- indicating read
+            wdata <= "ZZZZZZZZZZZZZZZZ";  -- invalid/dont care - statement (read-cycle)
+        end if;
+    end process;
+
 
 
     -- DATA FLOW --> Memory Operations
