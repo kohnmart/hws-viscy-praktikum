@@ -186,15 +186,24 @@ BEGIN
 
     variable n: integer;
     
+    variable memread: std_logic_vector(15 downto 0);
     
   begin
 
     -- HIER: SINNVOLLES HAUPTPROGRAMM EINFÃœGEN
+
+    reset <= '1';
+    run_cycle;
+    reset <= '0';
+
     
     -- run cycle in while-loop until rd != '1' for 10 iterations (means that CPU stoppped => halt)
     n := 0;
     while n < 10 loop
 		run_cycle;
+
+    mem_check := mem_content (16#01F0#);
+
 		if rd = '0' then
 			n := n + 1;
 		else

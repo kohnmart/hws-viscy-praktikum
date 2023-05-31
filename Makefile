@@ -10,8 +10,8 @@
 
 
 # OWN SOURCES; top-level must be last; TO BE ADAPTED at "..."
-CPU_SRC = alu.vhd regfile.vhd ... viscy_cpu.vhd
-CPU_OBJ = $(CPU_SRC:%.vhd=%.o)
+CPU_SRC = alu/alu.vhdl rf/viscy_rf.vhdl pc/pc.vhdl ir/viscy_ir.vhdl cpu/cpu.vhdl cpu/cpu_tb.vhdl
+CPU_OBJ = $(CPU_SRC:%.vhdl=%.o)
 
 # EES/VISCY installation path
 EES_VISCY=/opt/ees/share/viscy/
@@ -31,11 +31,11 @@ viscy_cpu_tb: ${CPU_OBJ} viscy_cpu_tb.o
 	ees ghdl -e $@
 
 # Generic rule to analyze files (GHDL)...
-%.o: %.vhd
+%.o: %.vhdl
 	ees ghdl -a $<
 
 # File dependences ...
-cpu.o: alu.o regfile.o   # TO BE ADAPTED!
+cpu.o: alu/alu.o rf/viscy_rf.o pc/pc.o ir/viscy_ir.o cpu/cpu.o
 cpu_tb.o: cpu.o
 
 
