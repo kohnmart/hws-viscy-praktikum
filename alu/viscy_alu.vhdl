@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 -- Define ALU entity
-entity ALU is
+entity VISCY_ALU is
     port (
         a: in std_logic_vector (15 downto 0);  -- 16-bit input a
         b: in std_logic_vector (15 downto 0);  -- 16-bit input b
@@ -11,10 +11,10 @@ entity ALU is
         y: out std_logic_vector (15 downto 0); -- 16-bit output
         zero: out std_logic                    -- 0 output (helper for conditional jumps)
     );
-end ALU;
+end VISCY_ALU;
 
 -- RTL behavior architecture
-architecture RTL of ALU is
+architecture RTL of VISCY_ALU is
 begin
     process (a, b, sel)
     begin

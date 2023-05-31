@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity CPU is
+entity VISCY_CPU is
     port (
         clk, reset: in std_logic;                   -- clock and reset
         adr: out std_logic_vector (15 downto 0);    -- adressbus
@@ -11,9 +11,9 @@ entity CPU is
         rd, wr: out std_logic;                      -- read/write operations
         ready: in std_logic                         -- callback read/write
     );
-end CPU;
+end VISCY_CPU;
 
-architecture RTL of CPU is
+architecture RTL of VISCY_CPU is
 
     -- internal signals
     -- ALU
@@ -41,7 +41,7 @@ architecture RTL of CPU is
     signal mem_data_in, mem_data_out: std_logic_vector (15 downto 0);
 
     -- ALU
-    component ALU is
+    component VISCY_ALU is
         port(
             a: in std_logic_vector(15 downto 0);
             b: in std_logic_vector(15 downto 0);
@@ -52,7 +52,7 @@ architecture RTL of CPU is
     end component;
     
     -- PC
-    component PC is 
+    component VISCY_PC is 
     port (
         clk: in std_logic;
         reset, inc, load: in std_logic;
@@ -62,7 +62,7 @@ architecture RTL of CPU is
     end component;
 
     -- IR
-    component IR is 
+    component VISCY_IR is 
     port(
         clk: in std_logic;
         load: in std_logic;
@@ -72,7 +72,7 @@ architecture RTL of CPU is
     end component;
 
     -- REGFILE
-    component REGFILE is 
+    component VISCY_REGFILE is 
     port(
         clk: in std_logic;
         out0_data: out std_logic_vector (15 downto 0);
@@ -86,7 +86,7 @@ architecture RTL of CPU is
     end component;
 
     -- Controller
-    component CONTROLLER is 
+    component VISCY_CONTROLLER is 
     port(
         clk, reset: in std_logic;
         ir: in std_logic_vector(15 downto 0);   -- operation
@@ -101,11 +101,11 @@ architecture RTL of CPU is
     end component; 
         
     -- configuration of entities
-    for all: ALU use entity WORK.ALU(RTL);
-    for all: IR use entity WORK.IR(RTL);
-    for all: PC use entity WORK.PC(RTL);
-    for all: REGFILE use entity WORK.REGFILE(RTL);
-    for all: CONTROLLER use entity WORK.CONTROLLER(RTL); --- awaiting controller 
+    for all: VISCY_ALU use entity WORK.VISCY_ALU(RTL);
+    for all: VISCY_IR use entity WORK.VISCY_IR(RTL);
+    for all: VISCY_PC use entity WORK.VISCY_PC(RTL);
+    for all: VISCY_REGFILE use entity WORK.VISCY_REGFILE(RTL);
+    for all: VISCY_CONTROLLER use entity WORK.VISCY_CONTROLLER(RTL); --- awaiting controller 
 
 
     begin 
@@ -113,7 +113,7 @@ architecture RTL of CPU is
         ----- PORT MAPPING -----
 
         -- ALU
-        CPU_ALU: ALU port map (
+        CPU_ALU: VISCY_ALU port map (
             a => regfile_out0_data,
             b => regfile_out1_data,
             y => alu_y,
@@ -123,7 +123,7 @@ architecture RTL of CPU is
 
 
         -- PC
-        CPU_PC: PC port map (
+        CPU_PC: VISCY_PC port map (
             clk => clk,
             reset => reset,
             inc => c_pc_inc,
@@ -133,7 +133,7 @@ architecture RTL of CPU is
         );
 
         -- REGFILE
-        CPU_REGFILE: REGFILE port map (
+        CPU_REGFILE: VISCY_REGFILE port map (
             clk => clk,
             in_data => regfile_in_data,
             in_sel => ir_out(10 downto 8),
@@ -146,7 +146,7 @@ architecture RTL of CPU is
         );
 
         -- IR 
-        CPU_IR: IR port map (
+        CPU_IR: VISCY_IR port map (
             clk => clk,
             load => c_ir_load,
             ir_in => mem_data_in,
@@ -154,7 +154,7 @@ architecture RTL of CPU is
         );
         
         -- CONTROLLER
-        CPU_CONTROLLER: CONTROLLER port map (
+        CPU_CONTROLLER: VISCY_CONTROLLER port map (
 		    clk => clk,
             reset => reset,
 		    ir => ir_out, 	

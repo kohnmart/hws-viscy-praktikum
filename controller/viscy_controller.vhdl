@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity CONTROLLER is
+entity VISCY_CONTROLLER is
 	port (
 		clk, reset: in std_logic;
 		ir: in std_logic_vector(15 downto 0); 	-- Befehlswort / Opcode
@@ -14,10 +14,10 @@ entity CONTROLLER is
 		c_mem_rd, c_mem_wr, 					-- Signale zum Speicher
 		c_adr_pc_not_reg : out std_logic 		-- Auswahl Adress-Quelle
 	);
-end CONTROLLER;
+end VISCY_CONTROLLER;
 
 
-architecture RTL of CONTROLLER is
+architecture RTL of VISCY_CONTROLLER is
 	-- Aufzählungstyp für den Zustand...
 	type t_state is ( s_reset, s_if1, s_if2, s_id, s_alu, s_ldil, 
 		s_ldih, s_halt, s_error);

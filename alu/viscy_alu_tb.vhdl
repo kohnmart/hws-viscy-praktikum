@@ -3,14 +3,14 @@ use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all; -- Needed for shifts
 
 
-entity ALU_TB is
-end ALU_TB;
+entity VISCY_ALU_TB is
+end VISCY_ALU_TB;
 
 
-architecture TESTBENCH of ALU_TB is
+architecture TESTBENCH of VISCY_ALU_TB is
 
 	-- Component declaration...
-	component ALU
+	component VISCY_ALU
 		port ( 
 			a : in std_logic_vector (15 downto 0);  -- Eingang A
 			b : in std_logic_vector (15 downto 0);  -- Eingang B 
@@ -21,7 +21,7 @@ architecture TESTBENCH of ALU_TB is
 	end component;
 	
 	-- Configuration...
-	for IMPL: ALU use entity WORK.ALU(RTL);
+	for IMPL: VISCY_ALU use entity WORK.VISCY_ALU(RTL);
 	
 	-- Internal signals...
 	signal a_impl, b_impl, y_impl: std_logic_vector (15 downto 0);
@@ -30,7 +30,7 @@ architecture TESTBENCH of ALU_TB is
 	
 begin
 
-	IMPL: ALU port map (a => a_impl, b => b_impl, sel => sel_impl, y => y_impl, zero => zero_impl);
+	IMPL: VISCY_ALU port map (a => a_impl, b => b_impl, sel => sel_impl, y => y_impl, zero => zero_impl);
 
 	process
 		constant wait_time: time := 1 ns; -- is there a critical time?

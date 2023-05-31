@@ -10,7 +10,7 @@
 
 
 # OWN SOURCES; top-level must be last; TO BE ADAPTED at "..."
-CPU_SRC = alu/alu.vhdl rf/viscy_rf.vhdl pc/pc.vhdl ir/viscy_ir.vhdl controller/controller.vhdl cpu/cpu.vhdl
+CPU_SRC = alu/viscy_alu.vhdl rf/viscy_rf.vhdl pc/viscy_pc.vhdl ir/viscy_ir.vhdl controller/viscy_controller.vhdl cpu/viscy_cpu.vhdl
 CPU_OBJ = $(CPU_SRC:%.vhdl=%.o)
 
 # EES/VISCY installation path
@@ -35,7 +35,7 @@ viscy_cpu_tb: ${CPU_OBJ} cpu/viscy_cpu_tb.o
 	ees ghdl -a $<
 
 # File dependences ...
-cpu.o: alu/alu.o rf/viscy_rf.o pc/pc.o ir/viscy_ir.o controller/controller.o cpu/cpu.o
+viscy_cpu.o: alu/viscy_alu.o rf/viscy_rf.o pc/viscy_pc.o ir/viscy_ir.o controller/viscy_controller.o cpu/viscy_cpu.o
 viscy_cpu_tb.o: cpu.o
 
 

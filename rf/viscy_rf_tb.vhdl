@@ -10,7 +10,7 @@ end VISCY_RF_TB;
 architecture TESTBENCH of VISCY_RF_TB is
 
   -- Component declaration ...
-  component REGFILE
+  component VISCY_REGFILE
     port ( clk: in std_logic;
     out0_data: out std_logic_vector (15 downto 0); -- Datenausgang 0
     out0_sel: in std_logic_vector (2 downto 0); -- Register-Nr. 0
@@ -36,7 +36,7 @@ architecture TESTBENCH of VISCY_RF_TB is
 begin
 
   -- Instantiate regfile ...
-  U_REGFILE : REGFILE port map (
+  U_REGFILE : VISCY_REGFILE port map (
     clk => clk, 
     out0_data => out0_data, 
     out0_sel => out0_sel, 

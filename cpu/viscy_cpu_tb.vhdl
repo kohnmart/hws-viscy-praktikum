@@ -19,7 +19,7 @@ end VISCY_CPU_TB;
 architecture BEHAVIOR of VISCY_CPU_TB is
 
   -- Component Declaration for the Unit Under Test (UUT) ...
-  component CPU
+  component VISCY_CPU
     port (
       clk:    in    std_logic;
       reset:  in    std_logic;
@@ -127,12 +127,12 @@ architecture BEHAVIOR of VISCY_CPU_TB is
     );
 
 
-	for ALL: CPU use entity WORK.CPU(RTL);
+	for ALL: VISCY_CPU use entity WORK.VISCY_CPU(RTL);
 
 BEGIN
 
   -- Instantiate the Unit Under Test (UUT)
-  UUT: CPU port map (
+  UUT: VISCY_CPU port map (
       clk => clk,
       reset => reset,
       adr => adr,
