@@ -3,16 +3,16 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 -- Define Program Counter entity 
-entity PC is 
+entity VISCY_PC is 
     port(
         clk : in std_logic;                         -- input clock_rate
         reset, inc, load : in std_logic;            -- input controll signals
         pc_in : in std_logic_vector(15 downto 0);   -- 16-bit input data
         pc_out : out std_logic_vector(15 downto 0)  -- 16-bit output counter
         );
-end PC;
+end VISCY_PC;
 
-architecture RTL of PC is 
+architecture RTL of VISCY_PC is 
     signal count: unsigned (15 downto 0);           -- stores current value of pc
     begin 
         pc_out <= std_logic_vector(count);          -- assign count to pc_out

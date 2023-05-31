@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity REGFILE is
+entity VISCY_REGFILE is
 port (
     clk: in std_logic;
     out0_data: out std_logic_vector (15 downto 0); -- Datenausgang 0
@@ -13,9 +13,9 @@ port (
     in_sel: in std_logic_vector (2 downto 0); -- Register-Wahl
     load_lo, load_hi: in std_logic -- Register laden
 );
-end REGFILE;
+end VISCY_REGFILE;
 
-architecture RTL of REGFILE is
+architecture RTL of VISCY_REGFILE is
     type t_regfile is array (0 to 7) of std_logic_vector(15 downto 0);
     signal reg: t_regfile;
 begin  

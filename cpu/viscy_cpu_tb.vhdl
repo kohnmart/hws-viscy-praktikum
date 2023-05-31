@@ -19,7 +19,7 @@ end VISCY_CPU_TB;
 architecture BEHAVIOR of VISCY_CPU_TB is
 
   -- Component Declaration for the Unit Under Test (UUT) ...
-  component CPU
+  component VISCY_CPU
     port (
       clk:    in    std_logic;
       reset:  in    std_logic;
@@ -127,12 +127,12 @@ architecture BEHAVIOR of VISCY_CPU_TB is
     );
 
 
-	for ALL: CPU use entity WORK.CPU(RTL);
+	for ALL: VISCY_CPU use entity WORK.VISCY_CPU(RTL);
 
 BEGIN
 
   -- Instantiate the Unit Under Test (UUT)
-  UUT: CPU port map (
+  UUT: VISCY_CPU port map (
       clk => clk,
       reset => reset,
       adr => adr,
@@ -186,21 +186,27 @@ BEGIN
 
     variable n: integer;
     
+    variable memread: std_logic_vector(15 downto 0);
     
   begin
 
     -- HIER: SINNVOLLES HAUPTPROGRAMM EINFÃœGEN
+
+    reset <= '1';
+    run_cycle;
+    reset <= '0';
     
     -- run cycle in while-loop until rd != '1' for 10 iterations (means that CPU stoppped => halt)
     n := 0;
     while n < 10 loop
-		run_cycle;
-		if rd = '0' then
-			n := n + 1;
-		else
-			n := 0;
-		end if;
-	end loop;
+		  run_cycle;
+
+		  if rd = '0' then
+			  n := n + 1;
+		  else
+			  n := 0;
+		  end if;
+	  end loop;
         
     wait; -- wait forever (stop simulation)
   end process;
