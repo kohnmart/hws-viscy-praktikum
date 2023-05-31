@@ -195,19 +195,18 @@ BEGIN
     reset <= '1';
     run_cycle;
     reset <= '0';
-
     
     -- run cycle in while-loop until rd != '1' for 10 iterations (means that CPU stoppped => halt)
     n := 0;
     while n < 10 loop
-		run_cycle;
+		  run_cycle;
 
-		if rd = '0' then
-			n := n + 1;
-		else
-			n := 0;
-		end if;
-	end loop;
+		  if rd = '0' then
+			  n := n + 1;
+		  else
+			  n := 0;
+		  end if;
+	  end loop;
         
     wait; -- wait forever (stop simulation)
   end process;

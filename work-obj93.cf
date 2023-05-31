@@ -1,22 +1,22 @@
 v 4
-file . "cpu/cpu.vhdl" "bb6f9377fd484da8eb2c60231bc4545df7a0a207" "20230531122455.053":
-  entity cpu at 1( 0) + 0 on 271;
-  architecture rtl of cpu at 16( 538) + 0 on 272;
-file . "ir/viscy_ir.vhdl" "d754e805b1f550b9d5b87bc31240d39f868c2d70" "20230531122455.033":
-  entity ir at 1( 0) + 0 on 267;
-  architecture rtl of ir at 14( 290) + 0 on 268;
-file . "rf/viscy_rf.vhdl" "9def77b54d96a9c784787797cdb8dd775a277558" "20230531122455.015":
-  entity regfile at 1( 0) + 0 on 263;
-  architecture rtl of regfile at 18( 585) + 0 on 264;
-file . "alu/alu.vhdl" "bfee00edd20424673387f4b88c5dcd8863b3d6cd" "20230531122454.998":
-  entity alu at 1( 0) + 0 on 261;
-  architecture rtl of alu at 17( 521) + 0 on 262;
-file . "pc/pc.vhdl" "cfb891c825d8ccdcf7e04e83d28e6c607e04f5db" "20230531122455.024":
-  entity pc at 1( 0) + 0 on 265;
-  architecture rtl of pc at 15( 448) + 0 on 266;
-file . "controller/controller.vhdl" "066a3f4cf76c27cbff8d537acd6385c317f0a546" "20230531122455.043":
-  entity controller at 1( 0) + 0 on 269;
-  architecture rtl of controller at 20( 605) + 0 on 270;
-file . "cpu/viscy_cpu_tb.vhdl" "3247c85a34beacbb447e7dc18a49c25e51528a7e" "20230531122455.063":
-  entity viscy_cpu_tb at 10( 495) + 0 on 273;
-  architecture behavior of viscy_cpu_tb at 19( 609) + 0 on 274;
+file . "cpu/viscy_cpu_tb.vhdl" "3247c85a34beacbb447e7dc18a49c25e51528a7e" "20230531122658.495":
+  entity viscy_cpu_tb at 10( 495) + 0 on 287;
+  architecture behavior of viscy_cpu_tb at 19( 609) + 0 on 288;
+file . "controller/controller.vhdl" "066a3f4cf76c27cbff8d537acd6385c317f0a546" "20230531122658.474":
+  entity controller at 1( 0) + 0 on 283;
+  architecture rtl of controller at 20( 605) + 0 on 284;
+file . "pc/pc.vhdl" "cfb891c825d8ccdcf7e04e83d28e6c607e04f5db" "20230531122658.455":
+  entity pc at 1( 0) + 0 on 279;
+  architecture rtl of pc at 15( 448) + 0 on 280;
+file . "alu/alu.vhdl" "bfee00edd20424673387f4b88c5dcd8863b3d6cd" "20230531122658.436":
+  entity alu at 1( 0) + 0 on 275;
+  architecture rtl of alu at 17( 521) + 0 on 276;
+file . "rf/viscy_rf.vhdl" "9def77b54d96a9c784787797cdb8dd775a277558" "20230531122658.445":
+  entity regfile at 1( 0) + 0 on 277;
+  architecture rtl of regfile at 18( 585) + 0 on 278;
+file . "ir/viscy_ir.vhdl" "d754e805b1f550b9d5b87bc31240d39f868c2d70" "20230531122658.464":
+  entity ir at 1( 0) + 0 on 281;
+  architecture rtl of ir at 14( 290) + 0 on 282;
+file . "cpu/cpu.vhdl" "bb6f9377fd484da8eb2c60231bc4545df7a0a207" "20230531122658.484":
+  entity cpu at 1( 0) + 0 on 285;
+  architecture rtl of cpu at 16( 538) + 0 on 286;

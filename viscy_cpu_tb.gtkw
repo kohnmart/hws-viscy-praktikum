@@ -1,0 +1,35 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Wed May 31 12:30:22 2023
+[*]
+[dumpfile] "/home/labuser/ws/hws-viscy-praktikum/viscy_cpu_tb.ghw"
+[dumpfile_mtime] "Wed May 31 12:26:58 2023"
+[dumpfile_size] 43990
+[savefile] "/home/labuser/ws/hws-viscy-praktikum/viscy_cpu_tb.gtkw"
+[timestart] 0
+[size] 1920 1043
+[pos] 1825 -66
+*-27.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.viscy_cpu_tb.
+[treeopen] top.viscy_cpu_tb.uut.
+[sst_width] 235
+[signals_width] 126
+[sst_expanded] 1
+[sst_vpaned_height] 306
+@23
+#{top.viscy_cpu_tb.uut.ir_out[15:0]} top.viscy_cpu_tb.uut.ir_out[15] top.viscy_cpu_tb.uut.ir_out[14] top.viscy_cpu_tb.uut.ir_out[13] top.viscy_cpu_tb.uut.ir_out[12] top.viscy_cpu_tb.uut.ir_out[11] top.viscy_cpu_tb.uut.ir_out[10] top.viscy_cpu_tb.uut.ir_out[9] top.viscy_cpu_tb.uut.ir_out[8] top.viscy_cpu_tb.uut.ir_out[7] top.viscy_cpu_tb.uut.ir_out[6] top.viscy_cpu_tb.uut.ir_out[5] top.viscy_cpu_tb.uut.ir_out[4] top.viscy_cpu_tb.uut.ir_out[3] top.viscy_cpu_tb.uut.ir_out[2] top.viscy_cpu_tb.uut.ir_out[1] top.viscy_cpu_tb.uut.ir_out[0]
+@22
+#{top.viscy_cpu_tb.uut.pc_out[15:0]} top.viscy_cpu_tb.uut.pc_out[15] top.viscy_cpu_tb.uut.pc_out[14] top.viscy_cpu_tb.uut.pc_out[13] top.viscy_cpu_tb.uut.pc_out[12] top.viscy_cpu_tb.uut.pc_out[11] top.viscy_cpu_tb.uut.pc_out[10] top.viscy_cpu_tb.uut.pc_out[9] top.viscy_cpu_tb.uut.pc_out[8] top.viscy_cpu_tb.uut.pc_out[7] top.viscy_cpu_tb.uut.pc_out[6] top.viscy_cpu_tb.uut.pc_out[5] top.viscy_cpu_tb.uut.pc_out[4] top.viscy_cpu_tb.uut.pc_out[3] top.viscy_cpu_tb.uut.pc_out[2] top.viscy_cpu_tb.uut.pc_out[1] top.viscy_cpu_tb.uut.pc_out[0]
+#{top.viscy_cpu_tb.uut.alu_y[15:0]} top.viscy_cpu_tb.uut.alu_y[15] top.viscy_cpu_tb.uut.alu_y[14] top.viscy_cpu_tb.uut.alu_y[13] top.viscy_cpu_tb.uut.alu_y[12] top.viscy_cpu_tb.uut.alu_y[11] top.viscy_cpu_tb.uut.alu_y[10] top.viscy_cpu_tb.uut.alu_y[9] top.viscy_cpu_tb.uut.alu_y[8] top.viscy_cpu_tb.uut.alu_y[7] top.viscy_cpu_tb.uut.alu_y[6] top.viscy_cpu_tb.uut.alu_y[5] top.viscy_cpu_tb.uut.alu_y[4] top.viscy_cpu_tb.uut.alu_y[3] top.viscy_cpu_tb.uut.alu_y[2] top.viscy_cpu_tb.uut.alu_y[1] top.viscy_cpu_tb.uut.alu_y[0]
+#{top.viscy_cpu_tb.uut.wdata[15:0]} top.viscy_cpu_tb.uut.wdata[15] top.viscy_cpu_tb.uut.wdata[14] top.viscy_cpu_tb.uut.wdata[13] top.viscy_cpu_tb.uut.wdata[12] top.viscy_cpu_tb.uut.wdata[11] top.viscy_cpu_tb.uut.wdata[10] top.viscy_cpu_tb.uut.wdata[9] top.viscy_cpu_tb.uut.wdata[8] top.viscy_cpu_tb.uut.wdata[7] top.viscy_cpu_tb.uut.wdata[6] top.viscy_cpu_tb.uut.wdata[5] top.viscy_cpu_tb.uut.wdata[4] top.viscy_cpu_tb.uut.wdata[3] top.viscy_cpu_tb.uut.wdata[2] top.viscy_cpu_tb.uut.wdata[1] top.viscy_cpu_tb.uut.wdata[0]
+#{top.viscy_cpu_tb.uut.rdata[15:0]} top.viscy_cpu_tb.uut.rdata[15] top.viscy_cpu_tb.uut.rdata[14] top.viscy_cpu_tb.uut.rdata[13] top.viscy_cpu_tb.uut.rdata[12] top.viscy_cpu_tb.uut.rdata[11] top.viscy_cpu_tb.uut.rdata[10] top.viscy_cpu_tb.uut.rdata[9] top.viscy_cpu_tb.uut.rdata[8] top.viscy_cpu_tb.uut.rdata[7] top.viscy_cpu_tb.uut.rdata[6] top.viscy_cpu_tb.uut.rdata[5] top.viscy_cpu_tb.uut.rdata[4] top.viscy_cpu_tb.uut.rdata[3] top.viscy_cpu_tb.uut.rdata[2] top.viscy_cpu_tb.uut.rdata[1] top.viscy_cpu_tb.uut.rdata[0]
+#{top.viscy_cpu_tb.uut.adr[15:0]} top.viscy_cpu_tb.uut.adr[15] top.viscy_cpu_tb.uut.adr[14] top.viscy_cpu_tb.uut.adr[13] top.viscy_cpu_tb.uut.adr[12] top.viscy_cpu_tb.uut.adr[11] top.viscy_cpu_tb.uut.adr[10] top.viscy_cpu_tb.uut.adr[9] top.viscy_cpu_tb.uut.adr[8] top.viscy_cpu_tb.uut.adr[7] top.viscy_cpu_tb.uut.adr[6] top.viscy_cpu_tb.uut.adr[5] top.viscy_cpu_tb.uut.adr[4] top.viscy_cpu_tb.uut.adr[3] top.viscy_cpu_tb.uut.adr[2] top.viscy_cpu_tb.uut.adr[1] top.viscy_cpu_tb.uut.adr[0]
+@28
+top.viscy_cpu_tb.uut.rd
+top.viscy_cpu_tb.uut.ready
+top.viscy_cpu_tb.uut.alu_zero
+top.viscy_cpu_tb.uut.reset
+top.viscy_cpu_tb.uut.clk
+[pattern_trace] 1
+[pattern_trace] 0
