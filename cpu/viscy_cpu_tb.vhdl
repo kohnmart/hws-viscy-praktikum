@@ -202,8 +202,6 @@ BEGIN
     while n < 10 loop
 		run_cycle;
 
-    mem_check := mem_content (16#01F0#);
-
 		if rd = '0' then
 			n := n + 1;
 		else

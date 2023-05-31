@@ -10,7 +10,7 @@
 
 
 # OWN SOURCES; top-level must be last; TO BE ADAPTED at "..."
-CPU_SRC = alu/alu.vhdl rf/viscy_rf.vhdl pc/pc.vhdl ir/viscy_ir.vhdl cpu/cpu.vhdl cpu/cpu_tb.vhdl
+CPU_SRC = alu/alu.vhdl rf/viscy_rf.vhdl pc/pc.vhdl ir/viscy_ir.vhdl controller/controller.vhdl cpu/cpu.vhdl
 CPU_OBJ = $(CPU_SRC:%.vhdl=%.o)
 
 # EES/VISCY installation path
@@ -23,11 +23,11 @@ EES_VISCY=/opt/ees/share/viscy/
 # Main target: Simulate and display ...
 .PHONY:sim
 sim: viscy_cpu_tb
-	./$< --wave=$<.ghw
+	ees ghdl -r viscy_cpu_tb --wave=$<.ghw
 	gtkwave -A $<.ghw &
 
 # Elaborate ...
-viscy_cpu_tb: ${CPU_OBJ} viscy_cpu_tb.o
+viscy_cpu_tb: ${CPU_OBJ} cpu/viscy_cpu_tb.o
 	ees ghdl -e $@
 
 # Generic rule to analyze files (GHDL)...
@@ -35,8 +35,8 @@ viscy_cpu_tb: ${CPU_OBJ} viscy_cpu_tb.o
 	ees ghdl -a $<
 
 # File dependences ...
-cpu.o: alu/alu.o rf/viscy_rf.o pc/pc.o ir/viscy_ir.o cpu/cpu.o
-cpu_tb.o: cpu.o
+cpu.o: alu/alu.o rf/viscy_rf.o pc/pc.o ir/viscy_ir.o controller/controller.o cpu/cpu.o
+viscy_cpu_tb.o: cpu.o
 
 
 

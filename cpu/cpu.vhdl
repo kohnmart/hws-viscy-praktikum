@@ -57,7 +57,7 @@ architecture RTL of CPU is
         clk: in std_logic;
         reset, inc, load: in std_logic;
         pc_in: in std_logic_vector(15 downto 0);
-        pc_out: in std_logic_vector(15 downto 0)
+        pc_out: out std_logic_vector(15 downto 0)
     );
     end component;
 
@@ -154,17 +154,23 @@ architecture RTL of CPU is
         );
         
         -- CONTROLLER
-        CPU CONTROLLER: CONTROLLER port map (
-		clk, reset: in std_logic;
-		ir: in std_logic_vector(15 downto 0); 	-- Befehlswort / Opcode
-		ready, zero: in std_logic; 				-- weitere Statussignale
-		c_reg_ldmem, c_reg_ldi, 				-- Auswahl beim Register-Laden
-		c_regfile_load_lo, c_regfile_load_hi, 	-- Steuersignale Reg.-File
-		c_pc_load, c_pc_inc, 					-- Steuereingaenge PC
-		c_ir_load, 								-- Steuereingang IR
-		c_mem_rd, c_mem_wr, 					-- Signale zum Speicher
-		c_adr_pc_not_reg : out std_logic 		-- Auswahl Adress-Quelle
-        )
+        CPU_CONTROLLER: CONTROLLER port map (
+		    clk => clk,
+            reset => reset,
+		    ir => ir_out, 	
+		    ready => ready,
+            zero => alu_zero, 				
+		    c_reg_ldmem => c_reg_ldmem, 
+            c_reg_ldi => c_reg_ldi, 			
+		    c_regfile_load_lo => c_regfile_load_lo, 
+            c_regfile_load_hi => c_regfile_load_hi,  	
+		    c_pc_load => c_pc_load, 
+            c_pc_inc => c_pc_inc, 					
+		    c_ir_load => c_ir_load, 								
+		    c_mem_rd => c_mem_rd, 
+            c_mem_wr => c_mem_wr, 					
+		    c_adr_pc_not_reg => c_adr_pc_not_reg
+        );
     
     -------- DATA ROUTING --------
 
